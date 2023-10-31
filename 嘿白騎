@@ -1,0 +1,105 @@
+#include <stdio.h>
+
+int main()
+{
+    int chess[8][8]={
+    {0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0},
+    {0,0,0,2,1,0,0,0},
+    {0,0,0,1,2,0,0,0},
+    {0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0}};
+
+
+    printf("請輸入棋盤座標\n");
+
+    int chess_i,chess_j = 0;
+    scanf("%d %d",&chess_i,&chess_j);
+
+    int x = chess_i - 1;
+    int y = chess_j - 1;
+    
+    if(chess[x][y] == 0)
+        printf("無棋\n");
+    else if(chess[x][y] == 1)
+        printf("黑棋\n");
+    else if(chess[x][y] == 2)
+        printf("白棋\n");
+
+
+    for(int i = 2;i < 8;i++)
+        for(int j = 1;j < i;j++)
+        {
+            if(chess[x+i][y] == 0 && x+i < 8)//右方
+                if(chess[x+i-j][y] == chess[x][y] || chess[x+i-j][y] == 0)
+                    break;
+                else if(j == i-1)
+                    printf("(%d,%d)可落子\n",chess_i+i,chess_j);
+        }
+    for(int i = 2;i < 8;i++)
+        for(int j = 1;j < i;j++)
+        {
+            if(chess[x-i][y] == 0 && x-i >= 0)//左方
+                if(chess[x-i+j][y] == chess[x][y] || chess[x-i+j][y] == 0)
+                    break;
+                else if(j == i-1)    
+                    printf("(%d,%d)可落子\n",chess_i-i,chess_j);
+        }
+    for(int i = 2;i < 8;i++)
+        for(int j = 1;j < i;j++)
+        {
+            if(chess[x][y+i] == 0 && y+i < 8)//下方
+                if(chess[x][y+i-j] == chess[x][y] || chess[x][y+i-j] == 0)
+                        break;
+                else if(j == i-1)    
+                    printf("(%d,%d)可落子\n",chess_i,chess_j+i);
+        }
+    for(int i = 2;i < 8;i++)
+        for(int j = 1;j < i;j++)
+        {
+            if(chess[x][y-i] == 0 && y-i >= 0)//上方
+                if(chess[x][y-i+j] == chess[x][y] || chess[x][y-i+j] == 0)
+                        break;
+                else if(j == i-1)    
+                    printf("(%d,%d)可落子\n",chess_i,chess_j-i);
+        }
+    for(int i = 2;i < 8;i++)
+        for(int j = 1;j < i;j++)
+        {
+            if(chess[x+i][y+i] == 0 && x+i < 8 && y+i < 8)//右下方
+                if(chess[x+i-j][y+i-j] == chess[x][y] || chess[x+i-j][y+i-j] == 0)
+                        break;
+                else if(j == i-1)    
+                    printf("(%d,%d)可落子\n",chess_i+i,chess_j+i);
+        }
+    for(int i = 2;i < 8;i++)
+        for(int j = 1;j < i;j++)
+        {
+            if(chess[x-i][y+i] == 0 && x-i >= 0 && y+i < 8)//左下方
+                if(chess[x-i+j][y+i-j] == chess[x][y] || chess[x-i+j][y+i-j] == 0)
+                        break;
+                else if(j == i-1)    
+                    printf("(%d,%d)可落子\n",chess_i-i,chess_j+i);
+        }
+    for(int i = 2;i < 8;i++)
+        for(int j = 1;j < i;j++)
+        {
+            if(chess[x+i][y-i] == 0 && x+i < 8 && y-i >= 0)//右上方
+                if(chess[x+i-j][y-i+j] == chess[x][y] || chess[x+i-j][y-i+j] == 0)
+                        break;
+                else if(j == i-1)    
+                    printf("(%d,%d)可落子\n",chess_i+i,chess_j-i);
+        }
+    for(int i = 2;i < 8;i++)
+        for(int j = 1;j < i;j++)
+        {
+            if(chess[x-i][y-i] == 0 && x-i >= 0 && y-i >= 0)//左上方
+                if(chess[x-i+j][y-i+j] == chess[x][y] || chess[x-i+j][y-i+j] == 0)
+                        break;
+                else if(j == i-1)    
+                    printf("(%d,%d)可落子\n",chess_i-i,chess_j-i);
+        }
+    return 0;
+}
