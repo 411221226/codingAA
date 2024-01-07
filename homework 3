@@ -30,3 +30,20 @@ int main(){
     }
     return 0;
 }
+//------------------------------
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+int main(){
+    while(1){
+        char name[1000]={};
+        printf("What is your name?: ");
+        scanf("%s",name);
+        if(isupper(name[0])==0) //如果偵測到字元(此為字首)非大寫字母則回傳0(False)
+            printf("This is not a name.\n");
+        else
+            printf("My name is %s.\n",name); 
+    }
+    return 0;
+}
+//------------------------------
